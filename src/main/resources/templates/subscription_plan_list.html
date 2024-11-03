@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Subscription Plan List</title>
+</head>
+<body>
+<h1>Subscription Plan List</h1>
+<a href="/subscription-plans/add">Add New Subscription Plan</a>
+<table border="1">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Details</th>
+    <th>Price</th>
+    <th>Duration (days)</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="plan : ${subscriptionPlans}">
+    <td th:text="${plan.id}"></td>
+    <td th:text="${plan.name}"></td>
+    <td th:text="${plan.details}"></td>
+    <td th:text="${plan.price}"></td>
+    <td th:text="${plan.duration}"></td>
+    <td>
+      <a th:href="@{/subscription-plans/edit/{id}(id=${plan.id})}">Edit</a> |
+      <a th:href="@{/subscription-plans/delete/{id}(id=${plan.id})}" onclick="return confirm('Are you sure?')">Delete</a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+        body {
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            text-align: center;
+            max-width: 500px;
+            padding: 40px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .container h1 {
+            margin-bottom: 20px;
+        }
+        .btn {
+            width: 100%;
+            margin: 10px 0;
+            padding: 12px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Добро пожаловать!</h1>
+    <p>Выберите раздел:</p>
+    <a href="/equipment-categories" class="btn btn-primary">Категории оборудования</a>
+    <a href="/feedbacks" class="btn btn-primary">Отзывы</a>
+    <a href="/customers" class="btn btn-primary">Клиент</a>
+    <a href="/insurance-policies" class="btn btn-primary">Полис</a>
+    <a href="/rental-orders" class="btn btn-primary">Аренда</a>
+    <a href="/repair-logs" class="btn btn-primary">Ремонт</a>
+    <a href="/sport-equipment" class="btn btn-primary">Спортивное оборудование</a>
+    <a href="/subscription-plans" class="btn btn-primary">Подписка</a>
+    <a href="/admin/users" class="btn btn-dark" >Admin Page</a>
+    <form th:action="@{/logout}" method="post" style="margin-top: 20px;">
+        <button type="submit" class="btn btn-danger">Log out</button>
+    </form>
+</div>
+</body>
+</html>

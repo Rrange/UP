@@ -1,0 +1,25 @@
+<form th:action="@{/repair-logs}" th:object="${repairLog}" method="post">
+    <input type="hidden" th:if="${repairLog.id != null}" th:field="*{id}" />
+
+    <label for="sportEquipmentId">Sport Equipment:</label>
+    <select id="sportEquipmentId" name="sportEquipmentId" required>
+        <option th:each="equipment : ${equipmentList}" th:value="${equipment.id}" th:text="${equipment.name}"></option>
+    </select>
+    <div th:if="${#fields.hasErrors('sportEquipment')}" th:errors="*{sportEquipment}"></div>
+
+    <!-- Остальная часть формы -->
+    <label for="repairDate">Repair Date:</label>
+    <input type="date" id="repairDate" th:field="*{repairDate}" required /><br/>
+    <div th:if="${#fields.hasErrors('repairDate')}" th:errors="*{repairDate}"></div>
+
+    <label for="repairDetails">Repair Details:</label>
+    <textarea id="repairDetails" th:field="*{repairDetails}" required></textarea><br/>
+    <div th:if="${#fields.hasErrors('repairDetails')}" th:errors="*{repairDetails}"></div>
+
+    <label for="cost">Cost:</label>
+    <input type="number" step="0.01" id="cost" th:field="*{cost}" required /><br/>
+    <div th:if="${#fields.hasErrors('cost')}" th:errors="*{cost}"></div>
+
+    <button type="submit">Submit</button>
+</form>
+<a href="/repair-logs">Back to List</a>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rental Detail</title>
+</head>
+<body>
+<h1>Rental Detail</h1>
+<p>ID: <span th:text="${rental.id}"></span></p>
+<p>Instrument ID: <span th:text="${rental.instrument.name}"></span></p>
+<p>User ID: <span th:text="${rental.customer.fullName}"></span></p>
+<p>Rental Date: <span th:text="${rental.rentalDate}"></span></p>
+<p>Return Date: <span th:text="${rental.returnDate}"></span></p>
+<a th:href="@{/rentals/{id}/edit(id=${rental.id})}">Edit</a>
+<form th:action="@{/rentals/{id}/delete(id=${rental.id})}" method="post" style="display:inline;">
+  <button type="submit">Delete</button>
+</form>
+<a href="/rentals">Back to Rental List</a>
+</body>
+</html>

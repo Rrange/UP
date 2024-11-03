@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add/Edit Rental</title>
+</head>
+<body>
+<h1 th:text="${rental.id != null} ? 'Edit Rental' : 'Add New Rental'"></h1>
+<form th:action="@{/rentals}" th:object="${rental}" method="post">
+  <input type="hidden" th:if="${rental.id != null}" th:field="*{id}" />
+  <label for="instrument">Instrument:</label>
+  <select id="instrument" th:field="*{instrument}" required>
+    <option th:each="instrument : ${instruments}" th:value="${instrument.id}" th:text="${instrument.name}"></option>
+  </select><br/>
+  <label for="customer">Customer:</label>
+  <select id="customer" th:field="*{customer}" required>
+    <option th:each="customer : ${customers}" th:value="${customer.id}" th:text="${customer.fullName}"></option>
+  </select><br/>
+  <label for="rentalDate">Rental Date:</label>
+  <input type="date" id="rentalDate" th:field="*{rentalDate}" required /><br/>
+  <label for="returnDate">Return Date:</label>
+  <input type="date" id="returnDate" th:field="*{returnDate}" required /><br/>
+  <button type="submit">Submit</button>
+</form>
+<a href="/rentals">Back to Rental List</a>
+</body>
+</html>

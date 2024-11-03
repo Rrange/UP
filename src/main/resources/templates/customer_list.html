@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customer List</title>
+</head>
+<body>
+<h1>Customer List</h1>
+<a href="/customers/add">Add New Customer</a>
+<table border="1">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Full Name</th>
+    <th>Email</th>
+    <th>Phone Number</th>
+    <th>Subscription Plans</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="customer : ${customers}">
+    <td th:text="${customer.id}"></td>
+    <td th:text="${customer.fullName}"></td>
+    <td th:text="${customer.email}"></td>
+    <td th:text="${customer.phoneNumber}"></td>
+    <td>
+      <ul>
+        <li th:each="plan : ${customer.subscriptionPlans}" th:text="${plan.name}"></li>
+      </ul>
+    </td>
+    <td>
+      <a th:href="@{/customers/edit/{id}(id=${customer.id})}">Edit</a> |
+      <a th:href="@{/customers/delete/{id}(id=${customer.id})}" onclick="return confirm('Are you sure?')">Delete</a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>

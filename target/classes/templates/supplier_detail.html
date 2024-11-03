@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Supplier Detail</title>
+</head>
+<body>
+<h1>Supplier Detail</h1>
+<p>ID: <span th:text="${supplier.id}"></span></p>
+<p>Company Name: <span th:text="${supplier.companyName}"></span></p>
+<p>Contact Name: <span th:text="${supplier.contactName}"></span></p>
+<p>Phone Number: <span th:text="${supplier.phoneNumber}"></span></p>
+<a th:href="@{/suppliers/{id}/edit(id=${supplier.id})}">Edit</a>
+<form th:action="@{/suppliers/{id}/delete(id=${supplier.id})}" method="post" style="display:inline;">
+  <button type="submit">Delete</button>
+</form>
+<a href="/suppliers">Back to Supplier List</a>
+</body>
+</html>

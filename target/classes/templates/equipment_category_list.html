@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Equipment Category List</title>
+</head>
+<body>
+<h1>Equipment Category List</h1>
+<a href="/equipment-categories/add">Add New Equipment Category</a>
+<table border="1">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Category Name</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="category : ${categories}">
+    <td th:text="${category.id}"></td>
+    <td th:text="${category.name}"></td>
+    <td>
+      <a th:href="@{/equipment-categories/edit/{id}(id=${category.id})}">Edit</a> |
+      <a th:href="@{/equipment-categories/delete/{id}(id=${category.id})}" onclick="return confirm('Are you sure?')">Delete</a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rental Orders List</title>
+</head>
+<body>
+<h1>Rental Orders List</h1>
+<a href="/rental-orders/add">Add New Rental Order</a>
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Customer</th>
+        <th>Sport Equipment</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="order : ${rentalOrders}">
+        <td th:text="${order.id}"></td>
+        <td th:text="${order.customer.fullName}"></td>
+        <td th:text="${order.sportEquipment.name}"></td>
+        <td th:text="${order.startDate}"></td>
+        <td th:text="${order.endDate}"></td>
+        <td>
+            <a th:href="@{/rental-orders/edit/{id}(id=${order.id})}">Edit</a> |
+            <a th:href="@{/rental-orders/delete/{id}(id=${order.id})}" onclick="return confirm('Are you sure?')">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

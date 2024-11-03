@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add/Edit Insurance Policy</title>
+</head>
+<body>
+<h1 th:text="${insurancePolicy.id != null} ? 'Edit Insurance Policy' : 'Add New Insurance Policy'"></h1>
+<form th:action="@{/insurance-policies}" th:object="${insurancePolicy}" method="post">
+  <input type="hidden" th:if="${insurancePolicy.id != null}" th:field="*{id}" />
+
+  <label for="policyNumber">Policy Number:</label>
+  <input type="text" id="policyNumber" th:field="*{policyNumber}" required /><br/>
+
+  <label for="rentalOrder">Rental Order:</label>
+  <select id="rentalOrder" th:field="*{rentalOrder}" required>
+    <option th:each="order : ${rentalOrders}" th:value="${order.id}" th:text="${order.id}"></option>
+  </select><br/>
+
+  <label for="coverageAmount">Coverage Amount:</label>
+  <input type="number" step="0.01" id="coverageAmount" th:field="*{coverageAmount}" required /><br/>
+
+  <label for="validUntil">Valid Until:</label>
+  <input type="date" id="validUntil" th:field="*{validUntil}" required /><br/>
+
+  <button type="submit">Submit</button>
+</form>
+<a href="/insurance-policies">Back to List</a>
+</body>
+</html>

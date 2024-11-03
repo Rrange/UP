@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rentals</title>
+</head>
+<body>
+<h1>Rentals</h1>
+<a href="/rentals/add">Add New Rental</a>
+<table border="1">
+  <tr>
+    <th>ID</th>
+    <th>Instrument ID</th>
+    <th>User ID</th>
+    <th>Rental Date</th>
+    <th>Return Date</th>
+    <th>Actions</th>
+  </tr>
+  <tr th:each="rental : ${rentals}">
+    <td th:text="${rental.id}"></td>
+    <td th:text="${rental.instrument.name}"></td>
+    <td th:text="${rental.customer.fullName}"></td>
+    <td th:text="${rental.rentalDate}"></td>
+    <td th:text="${rental.returnDate}"></td>
+    <td>
+      <a th:href="@{/rentals/{id}(id=${rental.id})}">View</a> |
+      <a th:href="@{/rentals/{id}/edit(id=${rental.id})}">Edit</a> |
+      <form th:action="@{/rentals/{id}/delete(id=${rental.id})}" method="post" style="display:inline;">
+        <button type="submit">Delete</button>
+      </form>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

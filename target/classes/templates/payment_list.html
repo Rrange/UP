@@ -1,0 +1,35 @@
+<!-- payment_list.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payments</title>
+</head>
+<body>
+<h1>Payments</h1>
+<a href="/payments/add">Add New Payment</a>
+<table border="1">
+  <tr>
+    <th>ID</th>
+    <th>Rental ID</th>
+    <th>Amount</th>
+    <th>Payment Date</th>
+    <th>Actions</th>
+  </tr>
+  <tr th:each="payment : ${payments}">
+    <td th:text="${payment.id}"></td>
+    <td th:text="${payment.rental.id}"></td>
+    <td th:text="${payment.amount}"></td>
+    <td th:text="${payment.paymentDate}"></td>
+    <td>
+      <a th:href="@{/payments/{id}(id=${payment.id})}">View</a> |
+      <a th:href="@{/payments/{id}/edit(id=${payment.id})}">Edit</a> |
+      <form th:action="@{/payments/{id}/delete(id=${payment.id})}" method="post" style="display:inline;">
+        <button type="submit">Delete</button>
+      </form>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

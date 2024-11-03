@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add/Edit Feedback</title>
+</head>
+<body>
+<h1 th:text="${feedback.id != null} ? 'Edit Feedback' : 'Add New Feedback'"></h1>
+<form th:action="@{/feedbacks}" th:object="${feedback}" method="post">
+  <input type="hidden" th:if="${feedback.id != null}" th:field="*{id}" />
+
+  <label for="customer">Customer:</label>
+  <select id="customer" th:field="*{customer}" required>
+    <option th:each="customer : ${customers}" th:value="${customer.id}" th:text="${customer.fullName}"></option>
+  </select><br/>
+
+  <label for="sportEquipment">Sport Equipment:</label>
+  <select id="sportEquipment" th:field="*{sportEquipment}" required>
+    <option th:each="equipment : ${equipmentList}" th:value="${equipment.id}" th:text="${equipment.name}"></option>
+  </select><br/>
+
+  <label for="rating">Rating:</label>
+  <input type="number" min="1" max="5" id="rating" th:field="*{rating}" required /><br/>
+
+  <label for="comments">Comments:</label>
+  <textarea id="comments" th:field="*{comments}" maxlength="1000"></textarea><br/>
+
+  <button type="submit">Submit</button>
+</form>
+<a href="/feedbacks">Back to List</a>
+</body>
+</html>

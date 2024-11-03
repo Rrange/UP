@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feedback List</title>
+</head>
+<body>
+<h1>Feedback List</h1>
+<a href="/feedbacks/add">Add New Feedback</a>
+<table border="1">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Customer</th>
+    <th>Equipment</th>
+    <th>Comments</th>
+    <th>Rating</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="feedback : ${feedbacks}">
+    <td th:text="${feedback.id}"></td>
+    <td th:text="${feedback.customer.fullName}"></td>
+    <td th:text="${feedback.sportEquipment.name}"></td>
+    <td th:text="${feedback.comments}"></td>
+    <td th:text="${feedback.rating}"></td>
+    <td>
+      <a th:href="@{/feedbacks/edit/{id}(id=${feedback.id})}">Edit</a> |
+      <a th:href="@{/feedbacks/delete/{id}(id=${feedback.id})}" onclick="return confirm('Are you sure?')">Delete</a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>
